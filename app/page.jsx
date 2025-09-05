@@ -3,7 +3,8 @@ import { Card } from 'components/card';
 import { ContextAlert } from 'components/context-alert';
 import { Markdown } from 'components/markdown';
 import { RandomQuote } from 'components/random-quote';
-import { getNetlifyContext } from 'utils';
+import { ENABLE_DEBUG_LOGS, getNetlifyContext } from 'utils';
+import HomePage from 'content/home.mdx';
 
 const contextExplainer = `
 The card below is rendered on the server based on the value of \`process.env.CONTEXT\` 
@@ -24,29 +25,38 @@ And as always with dynamic content, beware of layout shifts & flicker! (here, we
 const ctx = getNetlifyContext();
 
 export default function Page() {
-    return (
-        <div className="flex flex-col gap-12 sm:gap-16">
-            <section>
-                <ContextAlert className="mb-6" />
-                <h1 className="mb-4">Netlify Platform Starter - Next.js</h1>
-                <p className="mb-6 text-lg">Get started with Next.js and Netlify in seconds.</p>
-                <Link href="https://docs.netlify.com/frameworks/next-js/overview/" className="btn btn-lg sm:min-w-64">
-                    Read the Docs
-                </Link>
-            </section>
-            {!!ctx && (
-                <section className="flex flex-col gap-4">
-                    <Markdown content={contextExplainer} />
-                    <RuntimeContextCard />
+    if (ENABLE_DEBUG_LOGS) {
+
+        return (
+            <div className="flex flex-col gap-12 sm:gap-16">
+                <section>
+                    <ContextAlert className="mb-6" />
+                    <h1 className="mb-4">Netlify Platform Starter - Next.js</h1>
+                    <p className="mb-6 text-lg">Get started with Next.js and Netlify in seconds.</p>
+                    <Link href="https://docs.netlify.com/frameworks/next-js/overview/" className="btn btn-lg sm:min-w-64">
+                        Read the Docs
+                    </Link>
                 </section>
-            )}
-            <section className="flex flex-col gap-4">
-                <Markdown content={preDynamicContentExplainer} />
-                <RandomQuote />
-                <Markdown content={postDynamicContentExplainer} />
-            </section>
-        </div>
-    );
+                {!!ctx && (
+                    <section className="flex flex-col gap-4">
+                        <Markdown content={contextExplainer} />
+                        <RuntimeContextCard />
+                    </section>
+                )}
+                <section className="flex flex-col gap-4">
+                    <Markdown content={preDynamicContentExplainer} />
+                    <RandomQuote />
+                    <Markdown content={postDynamicContentExplainer} />
+                </section>
+            </div>
+        );
+    }
+    return (
+        <section className='prose contents dark:prose-invert'>
+            <HomePage />
+        </section>
+    )
+
 }
 
 function RuntimeContextCard() {
