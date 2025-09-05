@@ -35,7 +35,7 @@ if(process.env.NODE_ENV === 'production') {
 
 export function Header() {
     return (
-        <nav className="flex flex-wrap items-center gap-4 pt-6 pb-12 sm:pt-12 md:pb-24">
+        <nav className="flex flex-wrap items-center gap-4 mt-6 mb-12 sm:mt-12 md:mb-24 py-2 px-1 bg-amber-950/50 backdrop-blur-sm border border-amber-950/10 rounded-lg shadow-lg">
             <Link className="max-w-12 text-shadow-lg bg-amber-950/20 p-0.5 rounded-full shadow-lg" href="/">
                 <Image src={jigsawRulesLogo} alt="Jigsaw Rules logo" />
             </Link>
