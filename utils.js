@@ -35,3 +35,5 @@ export function uniqueName() {
 }
 
 export const uploadDisabled = process.env.NEXT_PUBLIC_DISABLE_UPLOADS?.toLowerCase() === "true";
+
+export const ENABLE_DEBUG_LOGS = process.env.NEXT_PUBLIC_ENABLE_DEBUG_LOGS?.toLowerCase() === "true";
