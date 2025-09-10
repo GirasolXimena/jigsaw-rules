@@ -16,7 +16,7 @@ const devNavItems = [
 const prodNavItems = [
     { linkText: 'Home', href: '/' },
     { linkText: 'The Rules', href: '/rules' },
-    { linkText: 'Trap Archive', href: '/trap-archive', disabled: true},
+    { linkText: 'Trap Archive', href: '/trap-archive', disabled: true },
     { linkText: 'Case Files', href: '/case-files', disabled: true },
     { linkText: 'Community', href: '/community', disabled: true },
     { linkText: 'Multimedia', href: '/multimedia', disabled: true },
@@ -24,13 +24,12 @@ const prodNavItems = [
     { linkText: 'About', href: '/about', disabled: true }
 ];
 
-
 let navItems = prodNavItems;
 if (ENABLE_DEBUG_LOGS) {
-    navItems.push(...devNavItems)
+    navItems.push(...devNavItems);
 }
-if(process.env.NODE_ENV === 'production') {
-    navItems = navItems.filter(item => !item.disabled);
+if (process.env.NODE_ENV === 'production') {
+    navItems = navItems.filter((item) => !item.disabled);
 }
 
 export function Header() {
